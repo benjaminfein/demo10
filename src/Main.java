@@ -16,6 +16,8 @@ public class Main {
             HashSet<String> orders = new HashSet<>();
             ArrayList<String> food = new ArrayList<>();
             ArrayList<String> drinks = new ArrayList<>();
+            ArrayList<String> listOfDrinks = new ArrayList<>();
+            ArrayList<String> listOfDishes = new ArrayList<>();
 
             Scanner drinksOrFood = new Scanner(System.in);
             int numberOfTable = tableNumberCount();
@@ -26,7 +28,7 @@ public class Main {
                 System.out.println("Please type '1' if you want to order drinks or '2' if you want to order food");
                 userChoice = drinksOrFood.nextInt();
             }
-            userChooseHandler(userChoice, orders, food, drinks);
+            userChooseHandler(userChoice, orders, food, drinks, listOfDishes, listOfDrinks);
 
             preparingOrders(food, drinks, numberOfTable);
             System.out.println("Your order is ready. Bon appetit!");

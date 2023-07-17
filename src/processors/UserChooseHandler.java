@@ -9,13 +9,14 @@ import static processors.FoodChooseHandler.foodChooseHandler;
 
 public class UserChooseHandler {
     public static void userChooseHandler(int userChoice,
-                                         HashSet<String> orders, ArrayList<String> food, ArrayList<String> drinks) {
+                                         HashSet<String> orders, ArrayList<String> food, ArrayList<String> drinks,
+                                         ArrayList<String> listOfDishes, ArrayList<String> listOfDrinks) {
         if (userChoice == 1) {
-            MenuDisplay.menuDisplay(userChoice);
-            drinksChooseHandler(orders, drinks);
+            MenuDisplay.menuDisplay(userChoice, listOfDishes, listOfDrinks);
+            drinksChooseHandler(orders, drinks, listOfDrinks);
         } else if (userChoice == 2) {
-            MenuDisplay.menuDisplay(userChoice);
-            foodChooseHandler(orders, food);
+            MenuDisplay.menuDisplay(userChoice, listOfDishes, listOfDrinks);
+            foodChooseHandler(orders, food, listOfDishes);
         }
         Scanner endOrResumeScanner = new Scanner(System.in);
         int endOrResume = endOrResumeScanner.nextInt();
@@ -35,11 +36,11 @@ public class UserChooseHandler {
                 foodOrDrink = foodOrDrinkScanner.nextInt();
             }
             if (foodOrDrink == 1) {
-                MenuDisplay.menuDisplay(1);
-                drinksChooseHandler(orders, drinks);
+                MenuDisplay.menuDisplay(1, listOfDishes, listOfDrinks);
+                drinksChooseHandler(orders, drinks, listOfDrinks);
             } else if (foodOrDrink == 2) {
-                MenuDisplay.menuDisplay(2);
-                foodChooseHandler(orders, food);
+                MenuDisplay.menuDisplay(2, listOfDishes, listOfDrinks);
+                foodChooseHandler(orders, food, listOfDishes);
             }
             endOrResume = endOrResumeScanner.nextInt();
         }
