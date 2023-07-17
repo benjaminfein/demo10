@@ -22,7 +22,6 @@ public class TableNumberCounter {
                 return number;
             }
             catch(IOException ex) {
-
                 System.out.println(ex.getMessage());
             }
         } catch (IOException e) {

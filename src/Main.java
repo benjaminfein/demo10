@@ -22,7 +22,11 @@ public class Main {
             System.out.println("Ok, so number of your table is '" + numberOfTable
                     + "'." + '\n' + "So what would you like at first? Drinks[1] or Food[2]?");
             int userChoice = drinksOrFood.nextInt();
-            userChooseHandler(drinksOrFood, userChoice, orders, food, drinks);
+            while (userChoice != 1 && userChoice != 2) {
+                System.out.println("Please type '1' if you want to order drinks or '2' if you want to order food");
+                userChoice = drinksOrFood.nextInt();
+            }
+            userChooseHandler(userChoice, orders, food, drinks);
 
             preparingOrders(food, drinks, numberOfTable);
             System.out.println("Your order is ready. Bon appetit!");

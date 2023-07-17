@@ -8,11 +8,8 @@ import static processors.DrinksChooseHandler.drinksChooseHandler;
 import static processors.FoodChooseHandler.foodChooseHandler;
 
 public class UserChooseHandler {
-    public static void userChooseHandler(Scanner drinksOrFood, int userChoice, HashSet<String> orders, ArrayList<String> food, ArrayList<String> drinks) {
-        while (userChoice != 1 && userChoice != 2) {
-            System.out.println("Please type '1' if you want to order drinks or '2' if you want to order food");
-            userChoice = drinksOrFood.nextInt();
-        }
+    public static void userChooseHandler(int userChoice,
+                                         HashSet<String> orders, ArrayList<String> food, ArrayList<String> drinks) {
         if (userChoice == 1) {
             MenuDisplay.menuDisplay(userChoice);
             drinksChooseHandler(orders, drinks);
