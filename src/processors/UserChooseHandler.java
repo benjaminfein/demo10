@@ -1,22 +1,24 @@
 package processors;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import structure.Bar;
+import structure.Kitchen;
+import structure.OrderTable;
+
 import java.util.Scanner;
 
-import static processors.DrinksChooseHandler.drinksChooseHandler;
-import static processors.FoodChooseHandler.foodChooseHandler;
+import static service.DrinkChoose.drinksChoose;
+import static service.DrinkMenuDisplay.drinkMenuDisplay;
+import static service.FoodChoose.foodChoose;
+import static service.FoodMenuDisplay.foodMenuDisplay;
 
 public class UserChooseHandler {
-    public static void userChooseHandler(int userChoice,
-                                         HashSet<String> orders, ArrayList<String> food, ArrayList<String> drinks,
-                                         ArrayList<String> listOfDishes, ArrayList<String> listOfDrinks) {
+    public static void userChooseHandler(int userChoice, OrderTable orderTable, Bar bar, Kitchen kitchen) {
         if (userChoice == 1) {
-            MenuDisplay.menuDisplay(userChoice, listOfDishes, listOfDrinks);
-            drinksChooseHandler(orders, drinks, listOfDrinks);
+            drinkMenuDisplay(bar.getListOfDrinks(), bar);
+            drinksChoose(orderTable.getOrders(), bar.getDrinks(), bar.getListOfDrinks());
         } else if (userChoice == 2) {
-            MenuDisplay.menuDisplay(userChoice, listOfDishes, listOfDrinks);
-            foodChooseHandler(orders, food, listOfDishes);
+            foodMenuDisplay(kitchen.getListOfDishes(), kitchen);
+            foodChoose(orderTable.getOrders(), kitchen.getFood(), kitchen.getListOfDishes());
         }
         Scanner endOrResumeScanner = new Scanner(System.in);
         int endOrResume = endOrResumeScanner.nextInt();
@@ -36,11 +38,11 @@ public class UserChooseHandler {
                 foodOrDrink = foodOrDrinkScanner.nextInt();
             }
             if (foodOrDrink == 1) {
-                MenuDisplay.menuDisplay(1, listOfDishes, listOfDrinks);
-                drinksChooseHandler(orders, drinks, listOfDrinks);
+                drinkMenuDisplay(bar.getListOfDrinks(), bar);
+                drinksChoose(orderTable.getOrders(), bar.getDrinks(), bar.getListOfDrinks());
             } else if (foodOrDrink == 2) {
-                MenuDisplay.menuDisplay(2, listOfDishes, listOfDrinks);
-                foodChooseHandler(orders, food, listOfDishes);
+                foodMenuDisplay(kitchen.getListOfDishes(), kitchen);
+                foodChoose(orderTable.getOrders(), kitchen.getFood(), kitchen.getListOfDishes());
             }
             endOrResume = endOrResumeScanner.nextInt();
         }

@@ -1,11 +1,11 @@
-package processors;
+package service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class FoodChooseHandler {
-    public static void foodChooseHandler(HashSet<String> orders, ArrayList<String> food, ArrayList<String> listOfDishes) {
+public interface FoodChoose {
+    public static void foodChoose(HashSet<String> orders, ArrayList<String> food, ArrayList<String> listOfDishes) {
         Scanner foodScanner = new Scanner(System.in);
         System.out.println("Please choose something and write number of your choose: ");
         int foodChoice = foodScanner.nextInt();
