@@ -1,20 +1,17 @@
 import structure.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
-import static processors.PreparingOrders.preparingOrders;
-import static processors.UserChooseHandler.userChooseHandler;
-import static service.TableNumberCounter.tableNumberCount;
+import static structure.Hall.tableNumberCount;
+import static structure.Hall.userChooseHandler;
+import static structure.Kitchen.preparingOrders;
 
 public class Main {
     public static void main(String[] args) {
         Scanner enterToRestaurant = new Scanner(System.in);
-        System.out.println("If you want to enter to restaurant please type 'Enter'. If you don't - type anything else.");
+        System.out.println('\n' + "If you want to enter to restaurant please type 'Enter'. If you don't - type anything else.");
         String start = enterToRestaurant.nextLine();
-        if (Objects.equals(start, "Enter")) {
+        if (Objects.equals(start.toLowerCase(Locale.ROOT), "enter")) {
             HashSet<String> orders = new HashSet<>();
             ArrayList<String> food = new ArrayList<>();
             ArrayList<String> drinks = new ArrayList<>();
@@ -42,19 +39,21 @@ public class Main {
                 System.out.println("You can go to the veranda. If you want to go to the veranda type 1, " +
                         "if you want to leave type 2");
                 Scanner scanner = new Scanner(System.in);
-                int secondUserChoice = scanner.nextInt();
-                while (secondUserChoice != 1 && secondUserChoice != 2) {
+                int secondUserChoice = 0;
+                while (!Arrays.asList(new Integer[]{1, 2})
+                        .contains(scanner.hasNextInt() ? secondUserChoice = scanner.nextInt() : scanner.next())){
+                    System.out.println("Error, input int-value!");
                     System.out.println("Please type 1 if you want to go to the veranda or 2 if you want to leave.");
-                    secondUserChoice = drinksOrFood.nextInt();
                 }
                 if (secondUserChoice == 1) {
                     System.out.println("Ok, so you would like to seat on the veranda. " +
                             "We will add a bottle of water to your order"
                             + "." + '\n' + "So what would you like at first? Drinks[1] or Food[2]?");
                     int userChoice = drinksOrFood.nextInt();
-                    while (userChoice != 1 && userChoice != 2) {
+                    while (!Arrays.asList(new Integer[]{1, 2})
+                            .contains(drinksOrFood.hasNextInt() ? userChoice = drinksOrFood.nextInt() : drinksOrFood.next())){
+                        System.out.println("Error, input int-value!");
                         System.out.println("Please type '1' if you want to order drinks or '2' if you want to order food");
-                        userChoice = drinksOrFood.nextInt();
                     }
                     userChooseHandler(userChoice, orderTable, bar, kitchen);
                     orders.add(listOfDishes.get(2));
@@ -67,10 +66,11 @@ public class Main {
             } else {
                 System.out.println("Ok, so number of your table is '" + numberOfTable
                         + "'." + '\n' + "So what would you like at first? Drinks[1] or Food[2]?");
-                int userChoice = drinksOrFood.nextInt();
-                while (userChoice != 1 && userChoice != 2) {
+                int userChoice = 0;
+                while (!Arrays.asList(new Integer[]{1, 2})
+                        .contains(drinksOrFood.hasNextInt() ? userChoice = drinksOrFood.nextInt() : drinksOrFood.next())){
+                    System.out.println("Error, input int-value!");
                     System.out.println("Please type '1' if you want to order drinks or '2' if you want to order food");
-                    userChoice = drinksOrFood.nextInt();
                 }
                 userChooseHandler(userChoice, orderTable, bar, kitchen);
                 preparingOrders(kitchen, bar, numberOfTable, dishesMaxCanCook);
